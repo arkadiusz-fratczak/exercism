@@ -5,4 +5,8 @@ import "time"
 
 const testVersion = 4
 
-func AddGigasecond(time.Time) time.Time
+var gigasecond, _ = time.ParseDuration("1000000000s")
+
+func AddGigasecond(t time.Time) time.Time {
+	return t.Add(gigasecond)
+}
