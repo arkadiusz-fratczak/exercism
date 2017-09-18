@@ -1,5 +1,19 @@
 package pangram
 
-const testVersion = 2
+import (
+	"strings"
+	"unicode"
+)
 
-func IsPangram(string) bool
+const testVersion = 2
+const alphabetLength = 26
+
+func IsPangram(word string) bool {
+	alphabet := make(map[rune]struct{})
+	for _, l := range strings.ToLower(word) {
+		if unicode.IsLetter(l) {
+			alphabet[l] = struct{}{}
+		}
+	}
+	return len(alphabet) == alphabetLength
+}
