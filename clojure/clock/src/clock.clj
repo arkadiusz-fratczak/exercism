@@ -3,15 +3,13 @@
 (def minutes-in-day (* 24 60))
 
 (defn- hours [clock]
-  (rem (quot (:m clock) 60) 24))
+  (mod (quot (:m clock) 60) 24))
 
 (defn- minutes [clock]
-  (rem (:m clock) 60))
+  (mod (:m clock) 60))
 
 (defn- normalize-minutes [minutes]
-  (if (< minutes 0)
-    (+ minutes-in-day (rem minutes minutes-in-day))
-    (rem minutes minutes-in-day)))
+  (mod minutes minutes-in-day))
 
 (defn clock->string [clock]
   (format "%02d:%02d" (hours clock) (minutes clock))
